@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "E-Commerce Growth Campaign",
+    "category": "Paid Media",
+    "description": "Full-funnel Meta & Google Ads strategy for a fashion brand. Scaled from $20K to $150K monthly revenue in 6 months.",
+    "metrics": [{ "label": "Revenue Growth", "value": "7.5x" }, { "label": "ROAS", "value": "4.8x" }, { "label": "CAC Reduction", "value": "-42%" }],
+    "tags": ["Meta Ads", "Google Ads", "CRO", "E-Commerce"],
+    "link": "#"
+  },
+  {
+    "id": 2,
+    "title": "SaaS Lead Generation",
+    "category": "SEO + Content",
+    "description": "Organic growth strategy combining long-form content, technical SEO, and link building for a B2B SaaS platform.",
+    "metrics": [{ "label": "Organic Traffic", "value": "+180%" }, { "label": "Leads / Month", "value": "320+" }, { "label": "Keyword Rankings", "value": "50 #1s" }],
+    "tags": ["SEO", "Content Marketing", "Link Building", "B2B"],
+    "link": "#"
+  },
+  {
+    "id": 3,
+    "title": "Brand Launch — TikTok Strategy",
+    "category": "Social Media",
+    "description": "Created and executed a TikTok-first content strategy for a consumer brand launching in a competitive market.",
+    "metrics": [{ "label": "Impressions", "value": "2M" }, { "label": "Followers in 30d", "value": "12K" }, { "label": "Engagement Rate", "value": "8.4%" }],
+    "tags": ["TikTok", "Social Media", "Brand Launch", "Content"],
+    "link": "#"
+  },
+  {
+    "id": 4,
+    "title": "Email Retention System",
+    "category": "Email Marketing",
+    "description": "Designed and automated a full customer lifecycle email program — welcome, nurture, win-back, and loyalty flows.",
+    "metrics": [{ "label": "Open Rate", "value": "42%" }, { "label": "Revenue from Email", "value": "28%" }, { "label": "Churn Reduction", "value": "-19%" }],
+    "tags": ["Email Marketing", "Automation", "Klaviyo", "Retention"],
+    "link": "#"
+  }
+]

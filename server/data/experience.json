@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "role": "Senior Digital Marketing Strategist",
+    "company": "Agency Name",
+    "period": "2022 – Present",
+    "description": "Led multi-channel digital campaigns for 15+ brands across e-commerce and SaaS. Managed $500K+ monthly ad spend with an average ROAS of 4.2x.",
+    "highlights": ["Grew organic traffic by 180% in 12 months", "Launched TikTok strategy that hit 2M impressions in 30 days", "Reduced CPL by 35% through funnel optimization"]
+  },
+  {
+    "id": 2,
+    "role": "Digital Marketing Manager",
+    "company": "Previous Company",
+    "period": "2020 – 2022",
+    "description": "Owned the full marketing funnel from awareness to retention for a D2C brand. Scaled revenue from $1M to $4M ARR.",
+    "highlights": ["Built email automation sequences with 42% open rate", "Managed Google & Meta paid media end-to-end", "Implemented SEO strategy ranking 50+ keywords on page 1"]
+  },
+  {
+    "id": 3,
+    "role": "Marketing Coordinator",
+    "company": "Startup",
+    "period": "2018 – 2020",
+    "description": "Supported digital marketing efforts across paid, organic, and social channels for a B2B SaaS startup.",
+    "highlights": ["Created content calendar driving 60% increase in social engagement", "Assisted in launching Google Ads campaigns from scratch", "Produced weekly analytics reports for leadership"]
+  }
+]

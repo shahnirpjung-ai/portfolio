@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "icon": "🔍",
+    "title": "SEO & Content Marketing",
+    "description": "Rank on Page 1 for high-intent keywords. I build topic clusters, optimize technical SEO, and create content strategies that drive organic traffic and convert visitors into leads.",
+    "highlights": ["Keyword research & topic clusters", "On-page & technical SEO", "Content calendar & production", "Google Search Console reporting"]
+  },
+  {
+    "id": 2,
+    "icon": "🎯",
+    "title": "Paid Advertising",
+    "description": "Google, Meta, TikTok & LinkedIn ads that actually convert. I handle full-funnel campaign strategy, creative testing, audience targeting, and budget optimization.",
+    "highlights": ["Google Search & Performance Max", "Meta & TikTok ad campaigns", "Creative testing frameworks", "ROAS-focused optimization"]
+  },
+  {
+    "id": 3,
+    "icon": "📱",
+    "title": "Social Media Marketing",
+    "description": "Build a brand presence that attracts and retains followers. Content strategy, community management, and platform-specific campaigns that grow your audience and drive engagement.",
+    "highlights": ["Content strategy & calendar", "Platform management", "Community engagement", "Growth & analytics reporting"]
+  },
+  {
+    "id": 4,
+    "icon": "✉️",
+    "title": "Email Marketing",
+    "description": "Automated email sequences that nurture leads and retain customers. From welcome flows to win-back campaigns — I build systems that run while you sleep.",
+    "highlights": ["Welcome & nurture sequences", "Abandoned cart & win-back flows", "List segmentation & hygiene", "A/B testing & optimization"]
+  },
+  {
+    "id": 5,
+    "icon": "📊",
+    "title": "Analytics & Reporting",
+    "description": "Turn data into decisions. I set up GA4, build Looker Studio dashboards, and give you clear weekly reports that show exactly what's working and where to invest next.",
+    "highlights": ["GA4 setup & configuration", "Looker Studio dashboards", "Attribution modelling", "Weekly performance reports"]
+  },
+  {
+    "id": 6,
+    "icon": "🚀",
+    "title": "Growth Strategy",
+    "description": "Full-funnel marketing strategy tailored to your business goals. I audit your current setup, identify the highest-leverage opportunities, and build a 90-day growth roadmap.",
+    "highlights": ["Marketing audit & gap analysis", "Channel strategy & prioritisation", "90-day growth roadmap", "KPI framework & goal setting"]
+  }
+]
