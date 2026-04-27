@@ -1,0 +1,23 @@
+{
+  "heading": "I turn digital noise\ninto real results.",
+  "subheading": "Digital marketing strategist with 5+ years helping brands grow online through data-driven campaigns and creative strategy.",
+  "bio": [
+    "I started in digital marketing because I was fascinated by the intersection of psychology and data — understanding why people click, convert, and come back. Over the years I've worked with e-commerce brands, SaaS companies, and local businesses, helping each of them find their voice online and turn it into revenue.",
+    "My approach is simple: understand the business deeply, identify the highest-leverage channel, run fast experiments, and double down on what works. I don't believe in vanity metrics — every campaign I run is tied to a real business outcome.",
+    "Outside of work, I stay sharp by following industry shifts — algorithm updates, new ad formats, emerging platforms — and testing them before most agencies even know they exist."
+  ],
+  "stats": [
+    { "val": "5+", "label": "Years of Experience", "desc": "Across agencies and in-house roles" },
+    { "val": "50+", "label": "Brands Worked With", "desc": "From startups to 8-figure companies" },
+    { "val": "$2M+", "label": "Ad Spend Managed", "desc": "Google, Meta, TikTok, LinkedIn" },
+    { "val": "4.2x", "label": "Average ROAS", "desc": "Across paid media campaigns" }
+  ],
+  "values": [
+    { "icon": "🎯", "title": "Results first", "desc": "Every campaign is tied to a real business metric — not impressions or followers." },
+    { "icon": "🔬", "title": "Always testing", "desc": "Hypotheses, experiments, learnings. I never \"set and forget\" a campaign." },
+    { "icon": "📖", "title": "Transparent", "desc": "Clear reporting, honest assessments, no jargon. You always know what's happening." },
+    { "icon": "⚡", "title": "Fast execution", "desc": "Speed matters in marketing. I move fast, iterate, and scale what works." }
+  ],
+  "ctaHeading": "Want to work together?",
+  "ctaSubtext": "Let's talk about your brand and how I can help you grow."
+}

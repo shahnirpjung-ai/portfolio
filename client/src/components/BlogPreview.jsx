@@ -1,6 +1,8 @@
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useApi } from '../hooks/useApi';
-import { useEffect, useRef } from 'react';
+
+const DEFAULT = { heading: 'Latest Blog', subheading: 'Stay updated with fresh insights on digital marketing, paid media, and growth strategy. Short, practical articles without the jargon.', buttonText: 'More Blogs', socialProof: '500+' };
 
 function useReveal(options = {}) {
   const ref = useRef(null);
@@ -8,10 +10,7 @@ function useReveal(options = {}) {
     const el = ref.current;
     if (!el) return;
     const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        el.classList.add('revealed');
-        observer.disconnect();
-      }
+      if (entry.isIntersecting) { el.classList.add('revealed'); observer.disconnect(); }
     }, { threshold: 0.15, ...options });
     observer.observe(el);
     return () => observer.disconnect();
@@ -24,23 +23,25 @@ export default function BlogPreview() {
   const { data: posts, loading } = useApi('/blog');
   const latest = posts?.slice(0, 3);
   const leftRef = useReveal();
+  const [sec, setSec] = useState(DEFAULT);
+
+  useEffect(() => { fetch('/api/home').then(r => r.json()).then(d => { if (d.blog) setSec(d.blog); }); }, []);
 
   return (
     <section style={{ borderTop: '1px solid var(--border)', background: '#0a0a0a', padding: '100px 0', overflow: 'hidden' }}>
       <div className="container">
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: '80px', alignItems: 'start' }}>
 
-          {/* Left — slides in from left */}
           <div ref={leftRef} className="reveal-left" style={{ position: 'sticky', top: '100px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
               <h2 style={{ fontSize: 'clamp(36px, 5vw, 58px)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.05, color: '#fff' }}>
-                Latest Blog
+                {sec.heading}
               </h2>
               <div style={{ flex: 1, height: '3px', background: 'linear-gradient(90deg, #990011, transparent)', borderRadius: '2px', minWidth: '40px', maxWidth: '80px', marginTop: '8px' }} />
             </div>
 
             <p style={{ fontSize: '16px', color: '#aaa', lineHeight: 1.8, marginBottom: '40px', maxWidth: '340px' }}>
-              Stay updated with fresh insights on digital marketing, paid media, and growth strategy. Short, practical articles without the jargon.
+              {sec.subheading}
             </p>
 
             <button onClick={() => navigate('/blog')}
@@ -49,11 +50,10 @@ export default function BlogPreview() {
                 <span style={{ color: '#fff', fontSize: '20px', fontWeight: 700 }}>→</span>
               </span>
               <span style={{ display: 'flex', alignItems: 'center', padding: '0 24px', height: '48px', background: 'rgba(153,0,17,0.15)', border: '1px solid rgba(153,0,17,0.4)', borderLeft: 'none', borderRadius: '0 12px 12px 0', color: '#ffb3b3', fontSize: '15px', fontWeight: 600, fontFamily: 'Inter, sans-serif' }}>
-                More Blogs
+                {sec.buttonText}
               </span>
             </button>
 
-            {/* Social proof */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <div style={{ display: 'flex' }}>
                 {['#e879f9', '#a78bfa', '#60a5fa', '#34d399'].map((color, i) => (
@@ -65,13 +65,12 @@ export default function BlogPreview() {
                   {Array(5).fill(0).map((_, i) => <span key={i} style={{ color: '#f59e0b', fontSize: '14px' }}>★</span>)}
                 </div>
                 <p style={{ fontSize: '13px', color: '#777', margin: 0 }}>
-                  Trusted by <strong style={{ color: '#ffb3b3' }}>500+</strong> readers
+                  Trusted by <strong style={{ color: '#ffb3b3' }}>{sec.socialProof}</strong> readers
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Right — cards stagger in from right */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {loading
               ? Array(3).fill(0).map((_, i) => <SkeletonCard key={i} />)
@@ -82,29 +81,11 @@ export default function BlogPreview() {
       </div>
 
       <style>{`
-        /* Reveal base states */
-        .reveal-left {
-          opacity: 0;
-          transform: translateX(-40px);
-          transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .reveal-right {
-          opacity: 0;
-          transform: translateX(50px);
-          transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-        .reveal-left.revealed,
-        .reveal-right.revealed {
-          opacity: 1;
-          transform: translateX(0);
-        }
-
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-
-        @media (max-width: 768px) {
-          .reveal-left { position: static !important; }
-          .blog-grid { grid-template-columns: 1fr !important; }
-        }
+        .reveal-left { opacity:0; transform:translateX(-40px); transition:opacity 0.7s ease,transform 0.7s ease; }
+        .reveal-right { opacity:0; transform:translateX(50px); transition:opacity 0.6s ease,transform 0.6s ease; }
+        .reveal-left.revealed, .reveal-right.revealed { opacity:1; transform:translateX(0); }
+        @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+        @media(max-width:768px){.reveal-left{position:static!important}.blog-grid{grid-template-columns:1fr!important}}
       `}</style>
     </section>
   );
@@ -112,55 +93,19 @@ export default function BlogPreview() {
 
 function PostCard({ post, navigate, index }) {
   const ref = useReveal();
-
   return (
-    <div
-      ref={ref}
-      className="reveal-right"
-      style={{ transitionDelay: `${index * 0.15}s` }}
-      onClick={() => navigate(`/blog/${post.slug}`)}
-    >
-      <div
-        style={{
-          display: 'flex', gap: '20px', alignItems: 'flex-start',
-          padding: '20px', borderRadius: '16px',
-          background: 'rgba(255,255,255,0.04)',
-          border: '1px solid rgba(255,255,255,0.07)',
-          cursor: 'pointer', transition: 'background 0.25s, border-color 0.25s, transform 0.25s',
-        }}
-        onMouseEnter={e => {
-          e.currentTarget.style.background = 'rgba(153,0,17,0.12)';
-          e.currentTarget.style.borderColor = 'rgba(153,0,17,0.4)';
-          e.currentTarget.style.transform = 'translateX(6px)';
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.background = 'rgba(255,255,255,0.04)';
-          e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
-          e.currentTarget.style.transform = 'translateX(0)';
-        }}>
-
-        {/* Thumbnail */}
-        <div style={{ width: '88px', height: '88px', borderRadius: '12px', flexShrink: 0, background: post.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px' }}>
-          {post.icon}
-        </div>
-
-        {/* Content */}
+    <div ref={ref} className="reveal-right" style={{ transitionDelay: `${index * 0.15}s` }} onClick={() => navigate(`/blog/${post.slug}`)}>
+      <div style={{ display: 'flex', gap: '20px', alignItems: 'flex-start', padding: '20px', borderRadius: '16px', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', cursor: 'pointer', transition: 'background 0.25s, border-color 0.25s, transform 0.25s' }}
+        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(153,0,17,0.12)'; e.currentTarget.style.borderColor = 'rgba(153,0,17,0.4)'; e.currentTarget.style.transform = 'translateX(6px)'; }}
+        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'; e.currentTarget.style.transform = 'translateX(0)'; }}>
+        <div style={{ width: '88px', height: '88px', borderRadius: '12px', flexShrink: 0, background: post.gradient, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '32px' }}>{post.icon}</div>
         <div style={{ flex: 1, minWidth: 0 }}>
-          <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#fff', lineHeight: 1.4, marginBottom: '8px', letterSpacing: '-0.01em' }}>
-            {post.title}
-          </h3>
-          <p style={{ fontSize: '13px', color: '#777', lineHeight: 1.65, marginBottom: '14px', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
-            {post.excerpt}
-          </p>
+          <h3 style={{ fontSize: '16px', fontWeight: 700, color: '#fff', lineHeight: 1.4, marginBottom: '8px', letterSpacing: '-0.01em' }}>{post.title}</h3>
+          <p style={{ fontSize: '13px', color: '#777', lineHeight: 1.65, marginBottom: '14px', overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>{post.excerpt}</p>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <div style={{ width: '24px', height: '24px', borderRadius: '50%', flexShrink: 0, background: 'linear-gradient(135deg,#990011,#b30014)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '10px', fontWeight: 700 }}>N</div>
-            <span style={{ fontSize: '12px', color: '#aaa' }}>
-              <span style={{ color: '#666', fontStyle: 'italic' }}>by</span>{' '}
-              <strong style={{ fontStyle: 'normal', color: '#ffb3b3', fontWeight: 600 }}>{post.author}</strong>
-            </span>
-            <span style={{ marginLeft: 'auto', fontSize: '12px', color: '#666', whiteSpace: 'nowrap' }}>
-              {formatDate(post.date)}
-            </span>
+            <span style={{ fontSize: '12px', color: '#aaa' }}><span style={{ color: '#666', fontStyle: 'italic' }}>by</span>{' '}<strong style={{ fontStyle: 'normal', color: '#ffb3b3', fontWeight: 600 }}>{post.author}</strong></span>
+            <span style={{ marginLeft: 'auto', fontSize: '12px', color: '#666', whiteSpace: 'nowrap' }}>{formatDate(post.date)}</span>
           </div>
         </div>
       </div>

@@ -2,18 +2,20 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { useApi } from '../hooks/useApi';
+import useSEO from '../hooks/useSEO';
 
 const CATEGORIES = ['All', 'Paid Media', 'SEO', 'Email Marketing', 'Analytics'];
 
 export default function BlogPage() {
   const navigate = useNavigate();
+  const seo = useSEO('blog');
   const [activeCategory, setActiveCategory] = useState('All');
   const endpoint = activeCategory === 'All' ? '/blog' : `/blog?category=${encodeURIComponent(activeCategory)}`;
   const { data: posts, loading } = useApi(endpoint);
 
   return (
     <div style={{ minHeight: '100vh', background: '#FCF6F5', fontFamily: 'Inter, sans-serif', color: '#111' }}>
-      <SEO title="Blog — Nirp | Digital Marketing Insights" description="Practical digital marketing insights, campaign breakdowns, and growth frameworks from Nirp. Paid media, SEO, email marketing and more." />
+      <SEO title={seo.title} description={seo.description} />
       <TopBar navigate={navigate} />
 
       {/* Hero banner */}

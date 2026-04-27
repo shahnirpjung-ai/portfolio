@@ -1,18 +1,42 @@
 [
   {
     "category": "Strategy",
-    "items": ["SEO / SEM", "Content Strategy", "Brand Positioning", "Market Research", "Competitor Analysis"]
+    "items": [
+      "SEO / SEM",
+      "Content Strategy",
+      "Brand Positioning",
+      "Market Research",
+      "Competitor Analysis"
+    ]
   },
   {
-    "category": "Paid Media",
-    "items": ["Google Ads", "Meta Ads", "TikTok Ads", "LinkedIn Ads", "Programmatic Advertising"]
+    "category": "Business development",
+    "items": [
+      "Google Ads",
+      "Meta Ads",
+      "TikTok Ads",
+      "LinkedIn Ads",
+      "Programmatic Advertising"
+    ]
   },
   {
     "category": "Analytics",
-    "items": ["Google Analytics 4", "Looker Studio", "Hotjar", "A/B Testing", "Conversion Rate Optimization"]
+    "items": [
+      "Google Analytics 4",
+      "Looker Studio",
+      "Hotjar",
+      "A/B Testing",
+      "Conversion Rate Optimization"
+    ]
   },
   {
     "category": "Content & Social",
-    "items": ["Social Media Management", "Email Marketing", "Copywriting", "Video Marketing", "Influencer Marketing"]
+    "items": [
+      "Social Media Management",
+      "Email Marketing",
+      "Copywriting",
+      "Video Marketing",
+      "Influencer Marketing"
+    ]
   }
 ]

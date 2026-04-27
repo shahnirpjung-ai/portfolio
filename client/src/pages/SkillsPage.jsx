@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { useApi } from '../hooks/useApi';
+import useSEO from '../hooks/useSEO';
 
 const labelStyle = { display: 'inline-block', fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#990011', marginBottom: '16px' };
 
@@ -25,11 +26,12 @@ const tools = [
 
 export default function SkillsPage() {
   const navigate = useNavigate();
+  const seo = useSEO('skills');
   const { data: skills, loading } = useApi('/skills');
 
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', fontFamily: 'Inter, sans-serif', color: '#e8e8e8' }}>
-      <SEO title="Skills & Expertise — Nirp | Digital Marketing" description="Explore Nirp's full-stack digital marketing skill set: SEO, paid media, email marketing, analytics, content strategy and more." />
+      <SEO title={seo.title} description={seo.description} />
       <TopBar navigate={navigate} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '120px 24px 80px' }}>

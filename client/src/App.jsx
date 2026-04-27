@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SEO from './components/SEO';
+import useSEO from './hooks/useSEO';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -16,11 +17,13 @@ import ContactPage from './pages/ContactPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
 import ServicesPage from './pages/ServicesPage';
+import AdminPage from './pages/AdminPage';
 
 function Home() {
+  const seo = useSEO('home');
   return (
     <>
-      <SEO title="Nirp — Digital Marketing Strategist" description="Nirp is a digital marketing strategist with 5+ years of experience in SEO, paid media, social media, email marketing, and data-driven brand growth." />
+      <SEO title={seo.title} description={seo.description} />
       <Navbar />
       <main>
         <Hero />
@@ -48,6 +51,7 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/admin" element={<AdminPage />} />
       </Routes>
     </BrowserRouter>
   );

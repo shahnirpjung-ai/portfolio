@@ -1,14 +1,30 @@
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { useApi } from '../hooks/useApi';
+import useSEO from '../hooks/useSEO';
+
+const DEFAULT = {
+  heading: 'What I can do\nfor your brand.',
+  subheading: 'End-to-end digital marketing built around measurable outcomes — not vanity metrics.',
+  ctaHeading: 'Ready to grow your brand?',
+  ctaSubtext: "Let's build a marketing strategy tailored to your goals and budget.",
+  ctaButton: 'Start a Project →',
+};
 
 export default function ServicesPage() {
   const navigate = useNavigate();
+  const seo = useSEO('services');
   const { data: services, loading } = useApi('/services');
+  const [page, setPage] = useState(DEFAULT);
+
+  useEffect(() => {
+    fetch('/api/services-page').then(r => r.json()).then(d => { if (!d.error) setPage(d); });
+  }, []);
 
   return (
     <div style={{ minHeight: '100vh', background: '#0f0f0f', fontFamily: 'Inter, sans-serif', color: '#fff' }}>
-      <SEO title="Services — Nirp | Digital Marketing" description="End-to-end digital marketing services: SEO, paid advertising, social media, email marketing, content strategy and brand growth." />
+      <SEO title={seo.title} description={seo.description} />
       <TopBar navigate={navigate} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '120px 24px 80px' }}>
@@ -16,10 +32,12 @@ export default function ServicesPage() {
         <div style={{ marginBottom: '64px' }}>
           <span style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#990011', display: 'block', marginBottom: '16px' }}>Services</span>
           <h1 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: '20px' }}>
-            What I can do<br />for your brand.
+            {page.heading.split('\n').map((line, i, arr) => (
+              <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+            ))}
           </h1>
           <p style={{ fontSize: '17px', color: '#555', lineHeight: 1.8, maxWidth: '500px' }}>
-            End-to-end digital marketing built around measurable outcomes — not vanity metrics.
+            {page.subheading}
           </p>
         </div>
 
@@ -37,7 +55,7 @@ export default function ServicesPage() {
                 onMouseEnter={e => { e.currentTarget.style.background = '#232323'; e.currentTarget.style.transform = 'translateY(-4px)'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = '#1c1c1c'; e.currentTarget.style.transform = 'translateY(0)'; }}>
 
-                <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: 'rgba(249,115,22,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', flexShrink: 0 }}>
+                <div style={{ width: '52px', height: '52px', borderRadius: '14px', background: 'rgba(153,0,17,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '24px', flexShrink: 0 }}>
                   {s.icon}
                 </div>
 
@@ -61,11 +79,11 @@ export default function ServicesPage() {
 
         {/* CTA */}
         <div style={{ padding: '60px', background: '#1c1c1c', borderRadius: '16px', textAlign: 'center' }}>
-          <h3 style={{ fontSize: '28px', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '12px' }}>Ready to grow your brand?</h3>
-          <p style={{ color: '#555', marginBottom: '28px', fontSize: '15px', lineHeight: 1.7 }}>Let's build a marketing strategy tailored to your goals and budget.</p>
+          <h3 style={{ fontSize: '28px', fontWeight: 800, letterSpacing: '-0.02em', marginBottom: '12px' }}>{page.ctaHeading}</h3>
+          <p style={{ color: '#555', marginBottom: '28px', fontSize: '15px', lineHeight: 1.7 }}>{page.ctaSubtext}</p>
           <button onClick={() => navigate('/contact')}
             style={{ padding: '14px 32px', background: '#990011', color: '#fff', border: 'none', borderRadius: '100px', fontSize: '15px', fontWeight: 600, fontFamily: 'Inter, sans-serif', cursor: 'pointer' }}>
-            Start a Project →
+            {page.ctaButton}
           </button>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 
@@ -7,6 +7,19 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', budget: '', service: '', message: '' });
   const [status, setStatus] = useState(null);
   const [errorMsg, setErrorMsg] = useState('');
+  const [info, setInfo] = useState({
+    metaTitle: 'Contact — Nirp | Hire a Digital Marketing Strategist',
+    metaDescription: 'Get in touch with Nirp to discuss your brand\'s digital marketing strategy.',
+    email: 'nirp@email.com',
+    location: 'Available Worldwide · Remote',
+    responseTime: 'Within 24 hours',
+    status: 'Open to new projects',
+    heading: 'Let\'s work\ntogether.',
+    subheading: 'Ready to grow your brand? Fill in the form and I\'ll get back to you within 24 hours.',
+    services: ['SEO / SEM', 'Paid Advertising', 'Social Media Marketing', 'Content Strategy', 'Email Marketing', 'Brand Strategy'],
+  });
+
+  useEffect(() => { fetch('/api/contact-info').then(r => r.json()).then(d => { if (!d.error) setInfo(d); }); }, []);
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
@@ -45,7 +58,7 @@ export default function ContactPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', fontFamily: 'Inter, sans-serif', color: '#e8e8e8' }}>
-      <SEO title="Contact — Nirp | Hire a Digital Marketing Strategist" description="Get in touch with Nirp to discuss your brand's digital marketing strategy. Available for SEO, paid media, social media, and full marketing audits." />
+      <SEO title={info.metaTitle} description={info.metaDescription} />
 
       {/* Top bar */}
       <div style={{
@@ -74,10 +87,12 @@ export default function ContactPage() {
             Contact
           </span>
           <h1 style={{ fontSize: 'clamp(36px, 5vw, 64px)', fontWeight: 700, letterSpacing: '-0.03em', lineHeight: 1.1, marginBottom: '20px' }}>
-            Let's work<br />together.
+            {info.heading.split('\n').map((line, i, arr) => (
+              <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+            ))}
           </h1>
           <p style={{ fontSize: '17px', color: '#666', lineHeight: 1.8, maxWidth: '480px' }}>
-            Ready to grow your brand? Fill in the form and I'll get back to you within 24 hours.
+            {info.subheading}
           </p>
         </div>
 
@@ -87,10 +102,10 @@ export default function ContactPage() {
           <div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
               {[
-                { icon: '✉', label: 'Email', value: 'nirp@email.com' },
-                { icon: '📍', label: 'Location', value: 'Available Worldwide · Remote' },
-                { icon: '⏱', label: 'Response Time', value: 'Within 24 hours' },
-                { icon: '🟢', label: 'Status', value: 'Open to new projects' },
+                { icon: '✉', label: 'Email', value: info.email },
+                { icon: '📍', label: 'Location', value: info.location },
+                { icon: '⏱', label: 'Response Time', value: info.responseTime },
+                { icon: '🟢', label: 'Status', value: info.status },
               ].map(({ icon, label, value }, i, arr) => (
                 <div key={label} style={{
                   display: 'flex', alignItems: 'center', gap: '16px',
@@ -111,7 +126,7 @@ export default function ContactPage() {
               <div style={{ fontSize: '12px', color: '#990011', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '16px' }}>
                 Services
               </div>
-              {['SEO / SEM', 'Paid Advertising', 'Social Media Marketing', 'Content Strategy', 'Email Marketing', 'Brand Strategy'].map(s => (
+              {info.services.map(s => (
                 <div key={s} style={{ display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 0', fontSize: '14px', color: '#888', borderBottom: '1px solid #1a1a1a' }}>
                   <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#990011', flexShrink: 0 }} />
                   {s}

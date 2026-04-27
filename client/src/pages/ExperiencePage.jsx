@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import SEO from '../components/SEO';
 import { useApi } from '../hooks/useApi';
+import useSEO from '../hooks/useSEO';
 
 const labelStyle = { display: 'inline-block', fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#990011', marginBottom: '16px' };
 
@@ -13,11 +14,12 @@ const education = [
 
 export default function ExperiencePage() {
   const navigate = useNavigate();
+  const seo = useSEO('experience');
   const { data: experience, loading } = useApi('/experience');
 
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', fontFamily: 'Inter, sans-serif', color: '#e8e8e8' }}>
-      <SEO title="Experience — Nirp | Digital Marketing Strategist" description="5+ years of hands-on digital marketing experience across agencies, in-house teams, and freelance engagements." />
+      <SEO title={seo.title} description={seo.description} />
       <TopBar navigate={navigate} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '120px 24px 80px' }}>

@@ -1,0 +1,47 @@
+{
+  "hero": {
+    "leftBadge": "hi",
+    "leftTitle": "Strategist.",
+    "leftDesc": "Performance marketing driving brand growth through creative campaigns.",
+    "rightBadge": "Hello!",
+    "rightTitle": "Analyst.",
+    "rightDesc": "Data-driven decisions backed by deep analytics and performance tracking."
+  },
+  "about": {
+    "label": "About Me",
+    "heading": "Turning clicks into\ncustomers.",
+    "para1": "I'm a digital marketing strategist with 5+ years of experience helping businesses grow their online presence, generate leads, and scale revenue. I combine creative thinking with analytical rigor to deliver campaigns that perform.",
+    "para2": "Whether it's architecting a paid media funnel, building an organic content engine, or running A/B tests to squeeze out every percentage point of conversion — I'm obsessed with results that move the needle.",
+    "buttonText": "Let's talk →",
+    "cards": [
+      { "icon": "📈", "title": "Growth Strategy", "desc": "Full-funnel marketing strategies built for sustainable, scalable growth." },
+      { "icon": "🎯", "title": "Paid Advertising", "desc": "Google, Meta, TikTok — precision targeting that maximizes every dollar." },
+      { "icon": "✍️", "title": "Content Marketing", "desc": "Content that ranks, resonates, and converts — at every stage of the funnel." },
+      { "icon": "📊", "title": "Data & Analytics", "desc": "Every decision backed by data. GA4, Looker Studio, A/B testing." }
+    ]
+  },
+  "skills": {
+    "label": "Expertise",
+    "heading": "What I bring to the table.",
+    "subheading": "A broad skill set covering every layer of digital marketing — strategy, execution, and analysis.",
+    "buttonText": "View My Services →"
+  },
+  "experience": {
+    "label": "Background",
+    "heading": "Experience.",
+    "subheading": "A track record of delivering measurable results across industries."
+  },
+  "blog": {
+    "heading": "Latest Blog",
+    "subheading": "Stay updated with fresh insights on digital marketing, paid media, and growth strategy. Short, practical articles without the jargon.",
+    "buttonText": "More Blogs",
+    "socialProof": "500+"
+  },
+  "cta": {
+    "label": "Ready to grow?",
+    "heading": "Let's build something great.",
+    "body": "Have a project in mind? I'd love to hear about it. Let's talk strategy, goals, and how I can help grow your brand.",
+    "primaryButton": "Contact Me →",
+    "secondaryButton": "Let's Talk"
+  }
+}

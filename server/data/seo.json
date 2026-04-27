@@ -1,0 +1,30 @@
+{
+  "home": {
+    "title": "Nirp — Digital Marketing Strategist",
+    "description": "Nirp is a digital marketing strategist with 5+ years of experience in SEO, paid media, social media, email marketing, and data-driven brand growth."
+  },
+  "about": {
+    "title": "About — Nirp | Digital Marketing Strategist",
+    "description": "Learn about Nirp, a digital marketing strategist with 5+ years helping brands grow through data-driven campaigns and creative strategy."
+  },
+  "skills": {
+    "title": "Skills & Expertise — Nirp | Digital Marketing",
+    "description": "Explore Nirp's full-stack digital marketing skill set: SEO, paid media, email marketing, analytics, content strategy and more."
+  },
+  "experience": {
+    "title": "Experience — Nirp | Digital Marketing Strategist",
+    "description": "5+ years of hands-on digital marketing experience across agencies, in-house teams, and freelance engagements."
+  },
+  "projects": {
+    "title": "Projects — shah | Digital Marketing Case Studies",
+    "description": "Real digital marketing campaigns with real results. Case studies across paid media, SEO, social media, and email marketing."
+  },
+  "services": {
+    "title": "Services — Nirp | Digital Marketing",
+    "description": "End-to-end digital marketing services: SEO, paid advertising, social media, email marketing, content strategy and brand growth."
+  },
+  "blog": {
+    "title": "Blog — Nirp | Digital Marketing Insights",
+    "description": "Practical digital marketing insights, campaign breakdowns, and growth frameworks from Nirp. Paid media, SEO, email marketing and more."
+  }
+}
