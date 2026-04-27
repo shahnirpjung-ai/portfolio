@@ -19,7 +19,7 @@ module.exports = async (req, res) => {
 
   if (!isAuthed(req)) return res.status(401).json({ error: 'Unauthorized' });
 
-  const raw  = req.query.slug;
+  const raw  = req.query['...slug'];
   const slug = Array.isArray(raw) ? raw : (raw ? [raw] : []);
   const [route, id, action] = slug;
 
