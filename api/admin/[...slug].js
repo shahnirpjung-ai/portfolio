@@ -1,13 +1,15 @@
 const supabase = require('../../lib/supabase');
 
-const PASSWORD = process.env.ADMIN_PASSWORD || 'nirp2024';
-const TOKEN    = process.env.ADMIN_TOKEN    || 'nirp-admin-secret-99';
-const ALLOWED  = ['skills','experience','projects','services','blog','contact-info','seo','about','services-page','home'];
+const TOKEN   = process.env.ADMIN_TOKEN || 'nirp-admin-secret-99';
+const ALLOWED = ['skills','experience','projects','services','blog','contact-info','seo','about','services-page','home'];
 
 const isAuthed = (req) => {
   const t = (req.headers.authorization || '').replace('Bearer ', '');
   return t === TOKEN;
 };
+
+const parseBody = (req) =>
+  typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -15,17 +17,11 @@ module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type,Authorization');
   if (req.method === 'OPTIONS') return res.status(200).end();
 
+  if (!isAuthed(req)) return res.status(401).json({ error: 'Unauthorized' });
+
   const raw  = req.query.slug;
   const slug = Array.isArray(raw) ? raw : (raw ? [raw] : []);
   const [route, id, action] = slug;
-
-  // POST /api/admin/login
-  if (route === 'login' && req.method === 'POST') {
-    if (req.body.password !== PASSWORD) return res.status(401).json({ error: 'Wrong password' });
-    return res.json({ token: TOKEN });
-  }
-
-  if (!isAuthed(req)) return res.status(401).json({ error: 'Unauthorized' });
 
   // POST /api/admin/upload — not supported on Vercel (no writable filesystem)
   if (route === 'upload') {
@@ -42,7 +38,6 @@ module.exports = async (req, res) => {
         .select('*')
         .order('created_at', { ascending: false });
       if (error) return res.status(500).json({ error: error.message });
-      // map created_at → date so AdminPage doesn't need changes
       return res.json(data.map(c => ({ ...c, date: c.created_at })));
     }
 
@@ -75,9 +70,10 @@ module.exports = async (req, res) => {
     }
 
     if (req.method === 'PUT') {
+      const body  = parseBody(req);
       const { error } = await supabase
         .from('portfolio_data')
-        .upsert({ key: route, data: req.body, updated_at: new Date().toISOString() }, { onConflict: 'key' });
+        .upsert({ key: route, data: body, updated_at: new Date().toISOString() }, { onConflict: 'key' });
       if (error) return res.status(500).json({ error: error.message });
       return res.json({ success: true });
     }
