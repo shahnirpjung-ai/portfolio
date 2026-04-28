@@ -97,10 +97,10 @@ export default function Hero() {
       <div onClick={() => navigate('/about')} style={{ position: 'absolute', inset: 0, zIndex: 3, clipPath: `inset(0 ${(100 - +lPct).toFixed(3)}% 0 0)`, cursor: 'pointer' }}>
         <div style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', left: 'clamp(24px, 5vw, 60px)', maxWidth: '260px', opacity: lTextOp, transition: 'opacity 0.05s' }}>
           <span style={{ display: 'inline-block', fontSize: '13px', fontWeight: 600, color: '#555', border: '1.5px solid #ccc', borderRadius: '100px', padding: '5px 16px', marginBottom: '20px', fontFamily: 'Inter, sans-serif', background: 'rgba(255,255,255,0.8)' }}>{hero.leftBadge}</span>
-          <h1 style={{ fontSize: 'clamp(28px, 4vw, 58px)', fontWeight: 800, letterSpacing: '-0.04em', color: '#111', lineHeight: 1.05, fontFamily: 'Inter, sans-serif', margin: 0 }}>
+          <h1 style={{ fontSize: 'clamp(22px, 4vw, 58px)', fontWeight: 800, letterSpacing: '-0.04em', color: '#111', lineHeight: 1.05, fontFamily: 'Inter, sans-serif', margin: 0 }}>
             I'm <span style={{ color: '#990011' }}>Nirp</span>,
           </h1>
-          <h1 style={{ fontSize: 'clamp(28px, 4vw, 58px)', fontWeight: 800, letterSpacing: '-0.04em', color: '#111', lineHeight: 1.05, fontFamily: 'Inter, sans-serif', marginBottom: '18px' }}>
+          <h1 style={{ fontSize: 'clamp(22px, 4vw, 58px)', fontWeight: 800, letterSpacing: '-0.04em', color: '#111', lineHeight: 1.05, fontFamily: 'Inter, sans-serif', marginBottom: '18px' }}>
             {hero.leftTitle}
           </h1>
           <p style={{ fontSize: '13px', color: '#666', lineHeight: 1.7, fontFamily: 'Inter, sans-serif' }}>{hero.leftDesc}</p>
@@ -111,10 +111,10 @@ export default function Hero() {
       <div onClick={() => navigate('/skills')} style={{ position: 'absolute', inset: 0, zIndex: 3, clipPath: `inset(0 0 0 ${lPct}%)`, cursor: 'pointer', background: 'rgba(0,0,0,0.5)' }}>
         <div style={{ position: 'absolute', top: '50%', transform: 'translateY(-50%)', right: 'clamp(24px, 5vw, 60px)', maxWidth: '260px', textAlign: 'right', opacity: rTextOp, transition: 'opacity 0.05s' }}>
           <span style={{ display: 'inline-block', fontSize: '13px', fontWeight: 600, color: 'rgba(255,255,255,0.7)', border: '1.5px solid rgba(255,255,255,0.3)', borderRadius: '100px', padding: '5px 16px', marginBottom: '20px', fontFamily: 'Inter, sans-serif' }}>{hero.rightBadge}</span>
-          <h1 style={{ fontSize: 'clamp(28px, 4vw, 58px)', fontWeight: 800, letterSpacing: '-0.04em', color: '#fff', lineHeight: 1.05, fontFamily: 'Inter, sans-serif', margin: 0 }}>
+          <h1 style={{ fontSize: 'clamp(22px, 4vw, 58px)', fontWeight: 800, letterSpacing: '-0.04em', color: '#fff', lineHeight: 1.05, fontFamily: 'Inter, sans-serif', margin: 0 }}>
             I'm <span style={{ color: '#ff6b6b' }}>Nirp</span>,
           </h1>
-          <h1 style={{ fontSize: 'clamp(28px, 4vw, 58px)', fontWeight: 800, letterSpacing: '-0.04em', color: '#fff', lineHeight: 1.05, fontFamily: 'Inter, sans-serif', marginBottom: '18px' }}>
+          <h1 style={{ fontSize: 'clamp(22px, 4vw, 58px)', fontWeight: 800, letterSpacing: '-0.04em', color: '#fff', lineHeight: 1.05, fontFamily: 'Inter, sans-serif', marginBottom: '18px' }}>
             {hero.rightTitle}
           </h1>
           <p style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, fontFamily: 'Inter, sans-serif' }}>{hero.rightDesc}</p>

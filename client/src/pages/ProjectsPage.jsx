@@ -49,7 +49,7 @@ export default function ProjectsPage() {
 
         {/* Project cards */}
         {loading ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '20px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '20px' }}>
             {Array(4).fill(0).map((_, i) => (
               <div key={i} style={{ height: '300px', background: 'linear-gradient(90deg,#111 25%,#1a1a1a 50%,#111 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite', borderRadius: '8px' }} />
             ))}
@@ -60,7 +60,7 @@ export default function ProjectsPage() {
             <p>No projects found in this category.</p>
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '20px', marginBottom: '64px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '20px', marginBottom: '64px' }}>
             {projects?.map(project => (
               <div key={project.id} style={{
                 background: '#111', border: '1px solid #1a1a1a', borderRadius: '8px',

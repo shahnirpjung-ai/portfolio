@@ -96,7 +96,7 @@ export default function ContactPage() {
           </p>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: '64px', alignItems: 'start' }}>
+        <div className="contact-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: '64px', alignItems: 'start' }}>
 
           {/* Left — info */}
           <div>
@@ -155,7 +155,7 @@ export default function ContactPage() {
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={labelStyle}>Your Name</label>
                     <input type="text" name="name" value={form.name} onChange={handleChange}
@@ -172,7 +172,7 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                <div className="two-col-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
                     <label style={labelStyle}>Service Needed</label>
                     <select name="service" value={form.service} onChange={handleChange}
@@ -238,9 +238,8 @@ export default function ContactPage() {
 
       <style>{`
         @media (max-width: 768px) {
-          .contact-grid { grid-template-columns: 1fr !important; }
-          .name-email-grid { grid-template-columns: 1fr !important; }
-          .service-budget-grid { grid-template-columns: 1fr !important; }
+          .contact-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .two-col-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </div>

@@ -42,13 +42,13 @@ export default function ServicesPage() {
         </div>
 
         {loading ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '16px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '16px' }}>
             {Array(6).fill(0).map((_, i) => (
               <div key={i} style={{ height: '280px', borderRadius: '16px', background: '#1a1a1a', opacity: 0.6 }} />
             ))}
           </div>
         ) : (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '16px', marginBottom: '64px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '16px', marginBottom: '64px' }}>
             {services?.map(s => (
               <div key={s.id}
                 style={{ background: '#1c1c1c', borderRadius: '16px', padding: '32px', display: 'flex', flexDirection: 'column', gap: '20px', transition: 'background 0.2s, transform 0.2s' }}

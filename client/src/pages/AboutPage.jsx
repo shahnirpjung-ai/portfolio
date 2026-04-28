@@ -60,7 +60,7 @@ export default function AboutPage() {
         </div>
 
         {/* Bio + stats grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '64px', marginBottom: '80px', alignItems: 'start' }}>
+        <div className="about-bio-grid" style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '64px', marginBottom: '80px', alignItems: 'start' }}>
           <div>
             {info.bio.map((para, i) => (
               <p key={i} style={{ color: '#aaa', lineHeight: 1.9, fontSize: '16px', marginBottom: i < info.bio.length - 1 ? '20px' : 0 }}>
@@ -100,7 +100,7 @@ export default function AboutPage() {
         </div>
 
         {/* CTA */}
-        <div style={{ padding: '60px', background: '#111', border: '1px solid #1a1a1a', borderRadius: '12px', textAlign: 'center' }}>
+        <div className="about-cta" style={{ padding: '60px', background: '#111', border: '1px solid #1a1a1a', borderRadius: '12px', textAlign: 'center' }}>
           <h3 style={{ fontSize: '28px', fontWeight: 700, letterSpacing: '-0.02em', marginBottom: '12px' }}>{info.ctaHeading}</h3>
           <p style={{ color: '#666', marginBottom: '28px', fontSize: '15px' }}>{info.ctaSubtext}</p>
           <button onClick={() => navigate('/contact')}
@@ -110,7 +110,12 @@ export default function AboutPage() {
         </div>
       </div>
 
-      <style>{`@media(max-width:768px){.about-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`
+        @media(max-width:768px){
+          .about-bio-grid { grid-template-columns:1fr!important; gap:40px!important; }
+          .about-cta { padding:36px 24px!important; }
+        }
+      `}</style>
     </div>
   );
 }

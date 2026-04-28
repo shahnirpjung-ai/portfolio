@@ -53,7 +53,7 @@ export default function BlogPage() {
         </div>
 
         {loading ? (
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '24px' }}>
             {Array(4).fill(0).map((_, i) => (
               <div key={i} style={{ background: '#FCF6F5', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.07)' }}>
                 <div style={{ height: '200px', background: 'linear-gradient(90deg,#eee 25%,#f5f5f5 50%,#eee 75%)', backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite' }} />
@@ -79,7 +79,7 @@ export default function BlogPage() {
             )}
 
             {/* Grid of remaining posts */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: '24px', marginTop: activeCategory === 'All' ? '32px' : '0' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 300px), 1fr))', gap: '24px', marginTop: activeCategory === 'All' ? '32px' : '0' }}>
               {(activeCategory === 'All' ? posts?.slice(1) : posts)?.map(post => (
                 <PostCard key={post.id} post={post} navigate={navigate} />
               ))}
@@ -97,7 +97,7 @@ export default function BlogPage() {
 
 function FeaturedCard({ post, navigate }) {
   return (
-    <div onClick={() => navigate(`/blog/${post.slug}`)}
+    <div className="featured-grid" onClick={() => navigate(`/blog/${post.slug}`)}
       style={{
         background: '#FCF6F5', borderRadius: '16px', overflow: 'hidden', cursor: 'pointer',
         boxShadow: '0 4px 24px rgba(0,0,0,0.08)', display: 'grid', gridTemplateColumns: '1fr 1fr',
@@ -140,7 +140,12 @@ function FeaturedCard({ post, navigate }) {
         </div>
       </div>
 
-      <style>{`@media(max-width:700px){.featured-grid{grid-template-columns:1fr!important}}`}</style>
+      <style>{`
+        @media(max-width:700px){
+          .featured-grid { grid-template-columns:1fr!important; }
+          .featured-grid>div:first-child { min-height:200px!important; }
+        }
+      `}</style>
     </div>
   );
 }

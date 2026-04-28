@@ -28,9 +28,9 @@ export default function BlogPreview() {
   useEffect(() => { fetch('/api/home').then(r => r.json()).then(d => { if (d.blog) setSec(d.blog); }); }, []);
 
   return (
-    <section style={{ borderTop: '1px solid var(--border)', background: '#0a0a0a', padding: '100px 0', overflow: 'hidden' }}>
+    <section className="blog-section" style={{ borderTop: '1px solid var(--border)', background: '#0a0a0a', padding: '100px 0', overflow: 'hidden' }}>
       <div className="container">
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: '80px', alignItems: 'start' }}>
+        <div className="blog-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1.4fr', gap: '80px', alignItems: 'start' }}>
 
           <div ref={leftRef} className="reveal-left" style={{ position: 'sticky', top: '100px' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '24px' }}>
@@ -85,7 +85,11 @@ export default function BlogPreview() {
         .reveal-right { opacity:0; transform:translateX(50px); transition:opacity 0.6s ease,transform 0.6s ease; }
         .reveal-left.revealed, .reveal-right.revealed { opacity:1; transform:translateX(0); }
         @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
-        @media(max-width:768px){.reveal-left{position:static!important}.blog-grid{grid-template-columns:1fr!important}}
+        @media(max-width:768px){
+          .blog-section { padding: 60px 0 !important; }
+          .blog-grid { grid-template-columns:1fr!important; gap:40px!important; }
+          .reveal-left { position:static!important; }
+        }
       `}</style>
     </section>
   );

@@ -39,7 +39,7 @@ export default function About() {
             <button className="btn btn-outline" onClick={() => navigate('/contact')}>{data.buttonText}</button>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+          <div className="about-cards" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
             {data.cards.map(({ icon, title, desc }) => (
               <div key={title} style={{ padding: '24px', background: 'var(--bg-2)', border: '1px solid var(--border)', borderRadius: 'var(--radius)', transition: 'border-color 0.2s' }}
                 onMouseEnter={e => e.currentTarget.style.borderColor = 'var(--accent)'}
@@ -52,7 +52,12 @@ export default function About() {
           </div>
         </div>
       </div>
-      <style>{`@media(max-width:768px){#about .container>div{grid-template-columns:1fr!important;gap:40px!important}}`}</style>
+      <style>{`
+        @media(max-width:768px){
+          #about .container>div { grid-template-columns:1fr!important; gap:40px!important; }
+          .about-cards { grid-template-columns:1fr!important; }
+        }
+      `}</style>
     </section>
   );
 }

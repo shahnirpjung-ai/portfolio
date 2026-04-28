@@ -125,3 +125,14 @@ section { padding: 100px 0; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+@media (max-width: 768px) {
+  section { padding: 60px 0; }
+  .section-title { font-size: clamp(24px, 6vw, 36px); }
+  .section-subtitle { font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  section { padding: 48px 0; }
+  .container { padding: 0 16px; }
+}
