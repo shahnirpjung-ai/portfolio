@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SEO from '../components/SEO';
+import { Helmet } from 'react-helmet-async';
 import { useApi } from '../hooks/useApi';
-import useSEO from '../hooks/useSEO';
+import { FAQSchema } from '../components/SchemaMarkup';
+
 
 const DEFAULT = {
   heading: 'What I can do\nfor your brand.',
@@ -14,7 +15,6 @@ const DEFAULT = {
 
 export default function ServicesPage() {
   const navigate = useNavigate();
-  const seo = useSEO('services');
   const { data: services, loading } = useApi('/services');
   const [page, setPage] = useState(DEFAULT);
 
@@ -24,7 +24,12 @@ export default function ServicesPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#0f0f0f', fontFamily: 'Inter, sans-serif', color: '#fff' }}>
-      <SEO title={seo.title} description={seo.description} />
+      <Helmet>
+        <title>Services — BD, Digital Marketing & AI Automation | Nirp Jung Shah Nepal</title>
+        <meta name="description" content="Business development, digital marketing, and AI automation services for NGOs, startups, banks, and businesses across Nepal. View packages and pricing." />
+        <link rel="canonical" href="https://nirp.com.np/services" />
+      </Helmet>
+      <FAQSchema />
       <TopBar navigate={navigate} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '120px 24px 80px' }}>

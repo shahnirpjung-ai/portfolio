@@ -1,22 +1,24 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SEO from '../components/SEO';
+import { Helmet } from 'react-helmet-async';
 import { useApi } from '../hooks/useApi';
-import useSEO from '../hooks/useSEO';
 
 const CATEGORIES = ['All', 'Paid Media', 'SEO + Content', 'Social Media', 'Email Marketing'];
 const labelStyle = { display: 'inline-block', fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#990011', marginBottom: '16px' };
 
 export default function ProjectsPage() {
   const navigate = useNavigate();
-  const seo = useSEO('projects');
   const [activeCategory, setActiveCategory] = useState('All');
   const endpoint = activeCategory === 'All' ? '/projects' : `/projects?category=${encodeURIComponent(activeCategory)}`;
   const { data: projects, loading } = useApi(endpoint);
 
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', fontFamily: 'Inter, sans-serif', color: '#e8e8e8' }}>
-      <SEO title={seo.title} description={seo.description} />
+      <Helmet>
+        <title>Work & Case Studies | Nirp Jung Shah — Nepal</title>
+        <meta name="description" content="Real results for NGOs, startups, and businesses across Nepal. BD partnerships closed, digital campaigns run, AI automation built." />
+        <link rel="canonical" href="https://nirp.com.np/work" />
+      </Helmet>
       <TopBar navigate={navigate} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '120px 24px 80px' }}>

@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import SEO from './components/SEO';
-import useSEO from './hooks/useSEO';
+import { Helmet } from 'react-helmet-async';
+import SchemaMarkup from './components/SchemaMarkup';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -20,10 +20,13 @@ import ServicesPage from './pages/ServicesPage';
 import AdminPage from './pages/AdminPage';
 
 function Home() {
-  const seo = useSEO('home');
   return (
     <>
-      <SEO title={seo.title} description={seo.description} />
+      <Helmet>
+        <title>Nirp Jung Shah | Business Developer & Digital Marketing Strategist — Nepal</title>
+        <meta name="description" content="Nirp Jung Shah helps NGOs, startups, banks, and businesses across Nepal grow with business development, digital marketing, and AI automation. Based in Kathmandu." />
+        <link rel="canonical" href="https://nirp.com.np" />
+      </Helmet>
       <Navbar />
       <main>
         <Hero />
@@ -41,6 +44,7 @@ function Home() {
 export default function App() {
   return (
     <BrowserRouter>
+      <SchemaMarkup />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutPage />} />

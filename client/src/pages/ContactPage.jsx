@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SEO from '../components/SEO';
+import { Helmet } from 'react-helmet-async';
 
 export default function ContactPage() {
   const navigate = useNavigate();
@@ -58,7 +58,11 @@ export default function ContactPage() {
 
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', fontFamily: 'Inter, sans-serif', color: '#e8e8e8' }}>
-      <SEO title={info.metaTitle} description={info.metaDescription} />
+      <Helmet>
+        <title>Contact Nirp Jung Shah — Business Developer & Digital Marketer, Nepal</title>
+        <meta name="description" content="Book a free 30-minute strategy call with Nirp Jung Shah. Business development and digital marketing strategist based in Kathmandu, Nepal." />
+        <link rel="canonical" href="https://nirp.com.np/contact" />
+      </Helmet>
 
       {/* Top bar */}
       <div style={{

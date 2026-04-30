@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import SEO from '../components/SEO';
-import useSEO from '../hooks/useSEO';
+import { Helmet } from 'react-helmet-async';
 
 const pageStyle = { minHeight: '100vh', background: '#0a0a0a', fontFamily: 'Inter, sans-serif', color: '#e8e8e8' };
 const labelStyle = { display: 'inline-block', fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#990011', marginBottom: '16px' };
@@ -32,7 +31,6 @@ const DEFAULT = {
 
 export default function AboutPage() {
   const navigate = useNavigate();
-  const seo = useSEO('about');
   const [info, setInfo] = useState(DEFAULT);
 
   useEffect(() => {
@@ -41,7 +39,11 @@ export default function AboutPage() {
 
   return (
     <div style={pageStyle}>
-      <SEO title={seo.title} description={seo.description} />
+      <Helmet>
+        <title>About Nirp Jung Shah — Business Developer & Digital Marketing Strategist, Nepal</title>
+        <meta name="description" content="5+ years experience. Ex-Khalti SEO. AI automation builder. Currently leading 15-person team at Soloitech. Business Developer at Next Coach Solutions. Kathmandu, Nepal." />
+        <link rel="canonical" href="https://nirp.com.np/about" />
+      </Helmet>
       <TopBar navigate={navigate} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '120px 24px 80px' }}>
