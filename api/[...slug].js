@@ -1,6 +1,6 @@
 const supabase = require('../lib/supabase');
 
-const KEYS = ['home','about','seo','contact-info','services-page','skills','experience','projects','services','blog'];
+const KEYS = ['home','about','seo','contact-info','services-page','skills','experience','projects','services','blog','experience-page'];
 
 module.exports = async (req, res) => {
   const raw  = req.query['...slug'];

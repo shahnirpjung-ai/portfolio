@@ -15,7 +15,7 @@ if (!SUPABASE_URL || !SUPABASE_SECRET) {
 const supabase = createClient(SUPABASE_URL, SUPABASE_SECRET);
 const DATA = path.join(__dirname, 'server/data');
 
-const keys = ['home','about','seo','contact-info','services-page','skills','experience','projects','services','blog'];
+const keys = ['home','about','seo','contact-info','services-page','skills','experience','projects','services','blog','experience-page'];
 
 async function seed() {
   console.log('Seeding portfolio_data...');

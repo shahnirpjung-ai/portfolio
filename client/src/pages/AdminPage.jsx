@@ -146,6 +146,7 @@ function Login({ onLogin }) {
 const NAV = [
   { key: 'skills', icon: '🎯', label: 'Skills' },
   { key: 'experience', icon: '💼', label: 'Experience' },
+  { key: 'experience-page', icon: '🎓', label: 'Edu & Quick Facts' },
   { key: 'projects', icon: '🚀', label: 'Projects' },
   { key: 'services', icon: '⚡', label: 'Services' },
   { key: 'blog', icon: '📝', label: 'Blog' },
@@ -886,6 +887,82 @@ function ServicesPageEditor() {
   );
 }
 
+/* ─── Experience Page Editor (Edu & Quick Facts) */
+function ExperiencePageEditor() {
+  const [data, setData] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [toast, setToast] = useState({});
+
+  useEffect(() => { api('/experience-page').then(setData); }, []);
+
+  const toast_ = (msg, type = 'ok') => { setToast({ msg, type }); setTimeout(() => setToast({}), 3000); };
+  const save = async () => { setSaving(true); await api('/experience-page', 'PUT', data); setSaving(false); toast_('Saved!'); };
+
+  const setEdu = val => setData(d => ({ ...d, education: val }));
+  const setFacts = val => setData(d => ({ ...d, quickFacts: val }));
+
+  const updateEdu = (i, key, val) => setEdu(data.education.map((e, j) => j === i ? { ...e, [key]: val } : e));
+  const removeEdu = i => setEdu(data.education.filter((_, j) => j !== i));
+  const addEdu = () => setEdu([...data.education, { degree: '', school: '', year: '', note: '' }]);
+
+  const updateFact = (i, key, val) => setFacts(data.quickFacts.map((f, j) => j === i ? { ...f, [key]: val } : f));
+  const removeFact = i => setFacts(data.quickFacts.filter((_, j) => j !== i));
+  const addFact = () => setFacts([...data.quickFacts, { label: '', value: '' }]);
+
+  if (!data) return <Loader />;
+
+  return (
+    <div>
+      <SectionHead title="Edu & Quick Facts" sub="Edit the sidebar on the Experience page" action={
+        <Btn small onClick={save}>{saving ? 'Saving…' : 'Save Changes'}</Btn>
+      } />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+
+        {/* Education & Certs */}
+        <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 24 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+            <div style={{ fontSize: 11, color: C.red, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Education & Certifications</div>
+            <Btn small outline onClick={addEdu}>+ Add</Btn>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+            {data.education.map((edu, i) => (
+              <div key={i} style={{ background: '#111', border: `1px solid ${C.border}`, borderRadius: 8, padding: 16, display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 80px', gap: 10 }}>
+                  <Input label="Degree / Certification" value={edu.degree} onChange={e => updateEdu(i, 'degree', e.target.value)} />
+                  <Input label="Year" value={edu.year} onChange={e => updateEdu(i, 'year', e.target.value)} />
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: 10, alignItems: 'flex-end' }}>
+                  <Input label="School / Issuer" value={edu.school} onChange={e => updateEdu(i, 'school', e.target.value)} />
+                  <Input label="Note" value={edu.note} onChange={e => updateEdu(i, 'note', e.target.value)} />
+                  <button onClick={() => removeEdu(i)} style={{ background: 'none', border: 'none', color: C.danger, cursor: 'pointer', fontSize: 18, paddingBottom: 2 }}>✕</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick Facts */}
+        <div style={{ background: C.card, border: `1px solid ${C.border}`, borderRadius: 12, padding: 24 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+            <div style={{ fontSize: 11, color: C.red, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em' }}>Quick Facts</div>
+            <Btn small outline onClick={addFact}>+ Add</Btn>
+          </div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            {data.quickFacts.map((fact, i) => (
+              <div key={i} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr auto', gap: 10, alignItems: 'flex-end' }}>
+                <Input label="Label" value={fact.label} onChange={e => updateFact(i, 'label', e.target.value)} />
+                <Input label="Value" value={fact.value} onChange={e => updateFact(i, 'value', e.target.value)} />
+                <button onClick={() => removeFact(i)} style={{ background: 'none', border: 'none', color: C.danger, cursor: 'pointer', fontSize: 18, paddingBottom: 2 }}>✕</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <Toast {...toast} />
+    </div>
+  );
+}
+
 /* ─── SEO Editor ─────────────────────────────── */
 const SEO_PAGES = [
   { key: 'home', label: 'Home' },
@@ -1115,7 +1192,7 @@ export default function AdminPage() {
 
   if (!loggedIn) return <Login onLogin={() => setLoggedIn(true)} />;
 
-  const editors = { home: HomeEditor, about: AboutEditor, 'services-page': ServicesPageEditor, skills: SkillsEditor, experience: ExperienceEditor, projects: ProjectsEditor, services: ServicesEditor, blog: BlogEditor, seo: SeoEditor, 'contact-info': ContactInfoEditor, contact: ContactInbox };
+  const editors = { home: HomeEditor, about: AboutEditor, 'services-page': ServicesPageEditor, 'experience-page': ExperiencePageEditor, skills: SkillsEditor, experience: ExperienceEditor, projects: ProjectsEditor, services: ServicesEditor, blog: BlogEditor, seo: SeoEditor, 'contact-info': ContactInfoEditor, contact: ContactInbox };
   const Editor = editors[section];
 
   return (

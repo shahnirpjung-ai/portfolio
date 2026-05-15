@@ -1,25 +1,33 @@
 import { useNavigate } from 'react-router-dom';
-import SEO from '../components/SEO';
 import { useApi } from '../hooks/useApi';
-import useSEO from '../hooks/useSEO';
 
 const labelStyle = { display: 'inline-block', fontSize: '11px', fontWeight: 600, letterSpacing: '0.15em', textTransform: 'uppercase', color: '#990011', marginBottom: '16px' };
 
-const education = [
-  { degree: 'BSc Marketing & Communications', school: 'University Name', year: '2018', note: 'Graduated with Honours' },
-  { degree: 'Google Ads Certification', school: 'Google', year: '2023', note: 'Search, Display & Performance Max' },
-  { degree: 'Meta Blueprint Certification', school: 'Meta', year: '2023', note: 'Advanced Advertising' },
-  { degree: 'HubSpot Content Marketing', school: 'HubSpot Academy', year: '2022', note: 'Content Strategy & SEO' },
-];
+const DEFAULT_PAGE = {
+  education: [
+    { degree: 'BSc Marketing & Communications', school: 'University Name', year: '2018', note: 'Graduated with Honours' },
+    { degree: 'Google Ads Certification', school: 'Google', year: '2023', note: 'Search, Display & Performance Max' },
+    { degree: 'Meta Blueprint Certification', school: 'Meta', year: '2023', note: 'Advanced Advertising' },
+    { degree: 'HubSpot Content Marketing', school: 'HubSpot Academy', year: '2022', note: 'Content Strategy & SEO' },
+  ],
+  quickFacts: [
+    { label: 'Location', value: 'Remote · Worldwide' },
+    { label: 'Languages', value: 'English, Arabic' },
+    { label: 'Availability', value: 'Open to projects' },
+    { label: 'Focus', value: 'D2C, SaaS, B2B' },
+  ],
+};
 
 export default function ExperiencePage() {
   const navigate = useNavigate();
-  const seo = useSEO('experience');
   const { data: experience, loading } = useApi('/experience');
+  const { data: page } = useApi('/experience-page');
+
+  const education = page?.education ?? DEFAULT_PAGE.education;
+  const quickFacts = page?.quickFacts ?? DEFAULT_PAGE.quickFacts;
 
   return (
     <div style={{ minHeight: '100vh', background: '#0a0a0a', fontFamily: 'Inter, sans-serif', color: '#e8e8e8' }}>
-      <SEO title={seo.title} description={seo.description} />
       <TopBar navigate={navigate} />
 
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '120px 24px 80px' }}>
@@ -47,22 +55,16 @@ export default function ExperiencePage() {
               </div>
             ) : (
               <div style={{ position: 'relative', marginTop: '16px' }}>
-                {/* Timeline line */}
                 <div style={{ position: 'absolute', left: '15px', top: '8px', bottom: '8px', width: '1px', background: '#1a1a1a' }} />
-
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0' }}>
                   {experience?.map((job, i) => (
                     <div key={job.id} style={{ display: 'flex', gap: '28px', paddingBottom: i < experience.length - 1 ? '32px' : 0 }}>
-                      {/* Dot */}
                       <div style={{ flexShrink: 0, width: '30px', display: 'flex', justifyContent: 'center', paddingTop: '6px' }}>
                         <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: '#990011', border: '2px solid #0a0a0a', outline: '1px solid #990011' }} />
                       </div>
-
-                      {/* Card */}
-                      <div style={{ flex: 1, padding: '28px', background: '#111', border: '1px solid #1a1a1a', borderRadius: '8px', marginBottom: '0', transition: 'border-color 0.2s' }}
+                      <div style={{ flex: 1, padding: '28px', background: '#111', border: '1px solid #1a1a1a', borderRadius: '8px', transition: 'border-color 0.2s' }}
                         onMouseEnter={e => e.currentTarget.style.borderColor = '#990011'}
                         onMouseLeave={e => e.currentTarget.style.borderColor = '#1a1a1a'}>
-
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '6px', flexWrap: 'wrap', gap: '8px' }}>
                           <div>
                             <h3 style={{ fontSize: '16px', fontWeight: 600, marginBottom: '3px' }}>{job.role}</h3>
@@ -72,9 +74,7 @@ export default function ExperiencePage() {
                             {job.period}
                           </span>
                         </div>
-
                         <p style={{ fontSize: '14px', color: '#666', lineHeight: 1.7, margin: '12px 0' }}>{job.description}</p>
-
                         <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '6px' }}>
                           {job.highlights.map(h => (
                             <li key={h} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '13px', color: '#666' }}>
@@ -111,16 +111,11 @@ export default function ExperiencePage() {
               </div>
             </div>
 
-            {/* Quick facts */}
+            {/* Quick Facts */}
             <div style={{ padding: '28px', background: '#111', border: '1px solid #1a1a1a', borderRadius: '8px' }}>
               <span style={labelStyle}>Quick Facts</span>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {[
-                  { label: 'Location', value: 'Remote · Worldwide' },
-                  { label: 'Languages', value: 'English, Arabic' },
-                  { label: 'Availability', value: 'Open to projects' },
-                  { label: 'Focus', value: 'D2C, SaaS, B2B' },
-                ].map(({ label, value }) => (
+                {quickFacts.map(({ label, value }) => (
                   <div key={label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '13px', paddingBottom: '14px', borderBottom: '1px solid #1a1a1a' }}>
                     <span style={{ color: '#555' }}>{label}</span>
                     <span style={{ color: '#ccc', fontWeight: 500 }}>{value}</span>

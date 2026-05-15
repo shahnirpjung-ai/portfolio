@@ -1,7 +1,7 @@
 const supabase = require('../../lib/supabase');
 
 const TOKEN   = process.env.ADMIN_TOKEN || 'nirp-admin-secret-99';
-const ALLOWED = ['skills','experience','projects','services','blog','contact-info','seo','about','services-page','home'];
+const ALLOWED = ['skills','experience','projects','services','blog','contact-info','seo','about','services-page','home','experience-page'];
 
 const isAuthed = (req) => {
   const t = (req.headers.authorization || '').replace('Bearer ', '');

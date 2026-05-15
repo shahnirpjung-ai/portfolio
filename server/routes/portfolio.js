@@ -46,4 +46,6 @@ router.get('/services-page', (_req, res) => res.json(read('services-page.json'))
 
 router.get('/home', (_req, res) => res.json(read('home.json')));
 
+router.get('/experience-page', (_req, res) => res.json(read('experience-page.json')));
+
 module.exports = router;

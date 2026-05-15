@@ -1,0 +1,14 @@
+{
+  "education": [
+    { "degree": "BSc Marketing & Communications", "school": "University Name", "year": "2018", "note": "Graduated with Honours" },
+    { "degree": "Google Ads Certification", "school": "Google", "year": "2023", "note": "Search, Display & Performance Max" },
+    { "degree": "Meta Blueprint Certification", "school": "Meta", "year": "2023", "note": "Advanced Advertising" },
+    { "degree": "HubSpot Content Marketing", "school": "HubSpot Academy", "year": "2022", "note": "Content Strategy & SEO" }
+  ],
+  "quickFacts": [
+    { "label": "Location", "value": "Remote · Worldwide" },
+    { "label": "Languages", "value": "English, Arabic" },
+    { "label": "Availability", "value": "Open to projects" },
+    { "label": "Focus", "value": "D2C, SaaS, B2B" }
+  ]
+}

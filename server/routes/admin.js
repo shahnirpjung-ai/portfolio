@@ -6,7 +6,7 @@ const multer = require('multer');
 
 const DATA = path.join(__dirname, '../data');
 const UPLOADS = path.join(__dirname, '../../client/public/uploads');
-const ALLOWED = ['skills', 'experience', 'projects', 'services', 'blog', 'contact-info', 'seo', 'about', 'services-page', 'home'];
+const ALLOWED = ['skills', 'experience', 'projects', 'services', 'blog', 'contact-info', 'seo', 'about', 'services-page', 'home', 'experience-page'];
 const CONTACTS = path.join(DATA, 'contacts.json');
 const PASSWORD = process.env.ADMIN_PASSWORD || 'nirp2024';
 const TOKEN    = process.env.ADMIN_TOKEN    || 'nirp-admin-secret-99';
